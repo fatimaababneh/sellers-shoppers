@@ -4,6 +4,7 @@ import { getSellerOrders, getUserStores } from "../../api/sellerAPI";
 import { getStore } from "../../api/shopperAPI";
 import { Loading } from "../../components/loading";
 import { UserContext } from "../../App";
+import { OrdersTable } from "../../components/ordersTable";
 
 
 export const ShowProducts = ()=>{
@@ -52,20 +53,7 @@ export const ShowProducts = ()=>{
         )}
     {stores && (products || orders) && (
                 <Grid container>
-                    <Grid item xs={12}>
-                        {orders.map((el)=>{
-                                return(
-                                    <>
-                                        <p>{el.id}</p>
-                                        <p>{el.product_name}</p>
-                                        <p>{el.price}</p>
-                                        <img src={el.product_image} style={{width:"20vh"}} />
-                                        <p>{el.quantity}</p>
-                                    </>
-                                )
-                            })
-                        }
-                    </Grid>
+                    <OrdersTable data={orders} />
             </Grid>
     )}
     </>
