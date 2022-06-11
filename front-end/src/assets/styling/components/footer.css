@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.footer-container{
+    background-color: black;
+}
+.footer-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 6em;
+    list-style-type: none;
+    align-items: center;
+    margin: auto;
+    width: 40%;
+}
+.footer-list a{
+    text-decoration: none;
+    color: white;
+}

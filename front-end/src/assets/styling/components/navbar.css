@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  margin: auto;
+  width: 40%;
+  padding-top: 1em;
+}
+.nav-list li {
+  list-style-type: none;
+  font-weight: bold;
+}
+.nav-list a :hover {
+  font-size: 1.05em;
+}
+#line-nav {
+  width: 50%;
+  margin: 0.2em auto;
+}
+.nav-list a {
+  text-decoration: none;
+  color: black;
+}

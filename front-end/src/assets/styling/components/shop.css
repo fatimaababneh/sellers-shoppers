@@ -1,0 +1,48 @@
+.shop-img{
+    background-image: url('../../images/newww.jpeg');
+    background-size: cover;
+    background-position: auto;
+    height: 60vh;
+    box-shadow: inset 30px 80px 150px black;
+    background: radial-gradient( black);
+}
+#shop-img-content{
+    display: flex;
+    padding:5em 12em;
+    align-items: center;
+}
+.cards-part{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: center;
+    gap: 4em;
+    margin: 2em auto 2em auto;
+    height: 16em;
+    width: 80%;
+}
+.shop-container{
+    height: 100%;
+}
+.card img{
+    height: 15em;
+    width: 100%;
+}
+.card {
+    
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-shadow: 1px 0 2px 5px rgb(162, 160, 160);
+}
+.card div{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.shop-btn{
+    background-color: rgb(68, 56, 147);
+    border-color: rgb(68, 56, 147);
+    color: white;
+    border-radius: 4px;
+    padding: .2em;
+    margin: .2em;
+}

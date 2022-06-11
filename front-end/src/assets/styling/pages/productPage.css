@@ -1,0 +1,9 @@
+.product-upper-container {
+  border-style: solid;
+  border-color: #9c27b0;
+  /* display: flex; */
+}
+
+.product-img {
+  width: 75%;
+}

@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.hero-image {
+  background-image: url("../../images/cloud.jpeg");
+  height: 80vh;
+  background-size: cover;
+  box-shadow: inset 30px 140px 150px black;
+  background: radial-gradient(black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-image h5 {
+  color: white;
+  font-weight: bolder;
+  font-size: 2em;
+  font-family: "Montserrat", sans-serif;
+  width: 100vw;
+  background-color: black;
+  text-align: center;
+}
