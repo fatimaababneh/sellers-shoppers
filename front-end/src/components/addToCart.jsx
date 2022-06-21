@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
 export const AddToCart = ({ prod }) => {
+  
   const handleClick = () => {
     const data = sessionStorage.getItem("cart")
       ? JSON.parse(sessionStorage.getItem("cart"))

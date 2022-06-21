@@ -25,7 +25,7 @@ export default function StoreCard({ id, name, owner, img, desc }) {
     >
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar  aria-label="recipe">
             {owner.charAt(0)}
           </Avatar>
         }

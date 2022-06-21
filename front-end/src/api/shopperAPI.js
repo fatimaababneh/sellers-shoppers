@@ -21,7 +21,10 @@ export const getStore = (id, setStore) => {
     .get(`${baseURL}/store/product/${id}`)
     .then((res) => {
       console.log(res.data)
+      if(res.data.length >0)
       setStore(res.data);
+      else
+      setStore("No products")
     })
     .catch((err) => {
       console.log(err);
@@ -45,7 +48,7 @@ export const insertOrder = (order) => {
     .post(`${baseURL}/addorder`, order)
     .then((res) => {
       console.log(res.data)
-      alert("Added Successfuly")
+      alert("Order Added Successfully");
       sessionStorage.removeItem('cart')
     })
     .catch((err) => {

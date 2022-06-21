@@ -13,13 +13,14 @@ import { Loading } from "./loading";
 const columns = [
   { id: "name", label: "Product", minWidth: 170 },
   { id: "price", label: "Price", minWidth: 100 },
+  { id: "pluse",label:"", minWidth: 20, align: "right" },
   {
     id: "quantity",
     label: "Quantity",
-    minWidth: 170,
-    align: "right",
+    minWidth: 10,
     format: (value) => value.toLocaleString("en-US"),
   },
+  { id: "minus",label:"", minWidth: 20 },
   {
     id: "total",
     label: "Total Price",
@@ -101,7 +102,8 @@ export const DataTable = ({ data, setData }) => {
                               <TableCell key={"action"}>
                                 {column.format && typeof value === "number" ? (
                                   column.format(value)
-                                ) : (
+                                ) : (<>
+                                
                                   <Button
                                     variant="contained"
                                     color=":red"
@@ -110,6 +112,41 @@ export const DataTable = ({ data, setData }) => {
                                   >
                                     DELETE
                                   </Button>
+                                  </>
+                                )}
+                              </TableCell>
+                            );
+                            if (column.id === "pluse")
+                            return (
+                              <TableCell key={"pluse"}>
+                                {column.format && typeof value === "number" ? (
+                                  column.format(value)
+                                ) : (<>
+                                  <Button
+                                    variant="contained"
+                                    color=":red"
+                                    style={{ width: "5%" }}
+                                  >
+                                    +
+                                  </Button>
+                                  </>
+                                )}
+                              </TableCell>
+                            );
+                            if (column.id === "minus")
+                            return (
+                              <TableCell key={"minus"}>
+                                {column.format && typeof value === "number" ? (
+                                  column.format(value)
+                                ) : (<>
+                                  <Button
+                                    variant="contained"
+                                    color=":red"
+                                    style={{ width: "5%" }}
+                                  >
+                                    -
+                                  </Button>
+                                  </>
                                 )}
                               </TableCell>
                             );

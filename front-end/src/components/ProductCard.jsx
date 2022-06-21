@@ -5,12 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { UserContext } from '../App'
 import { useNavigate } from "react-router-dom";
 import "../assets/styling/components/productCard.css";
 import { AddToCart } from "./addToCart";
 
 export default function ProductCard({ product, store_id }) {
-  const { id, product_name, product_description, price, product_image } = product;
+  const { id, product_name, product_description, price, product_image, owner_id } = product;
+  const { user } = React.useContext(UserContext);
+    const [loggedUser, setLoggedUser] = user;
   const navigate = useNavigate();
   return (
     <Card className="product-card" sx={{ maxWidth: 345 }}>
@@ -34,9 +37,11 @@ export default function ProductCard({ product, store_id }) {
           onClick={() => navigate(`/store=${store_id}/product=${id}`)}
           size="small"
         >
-          Learn More
+          Show More
         </Button>
-        <AddToCart prod={product} />
+        { loggedUser.id != owner_id &&
+        <AddToCart prod={product} />}
+
       </CardActions>
     </Card>
   );

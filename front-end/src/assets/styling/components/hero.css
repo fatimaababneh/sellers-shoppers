@@ -3,10 +3,10 @@
   padding: 0;
 }
 .hero-image {
-  background-image: url("../../images/newww.jpeg");
+  background-image: url("../../images/shoppingg.jpeg");
   height: 80vh;
   background-size: cover;
-  box-shadow: inset 30px 140px 150px black;
+  box-shadow: inset 30px 40px 150px black;
   background: radial-gradient(black);
   display: flex;
   align-items: center;

@@ -43,7 +43,7 @@ export const ShowProducts = ()=>{
                         </select>
                     </Grid>
                     <Grid item xs={5}>
-                        <label htmlFor="show">Store:</label>
+                        <label htmlFor="show">Show:</label>
                         <select name="show" onChange={(e)=>setShowing(e.target.value)}>
                             <option value={1}>Orders</option>
                             <option value={2}>Products</option>

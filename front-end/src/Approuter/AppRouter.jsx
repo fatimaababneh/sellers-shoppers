@@ -8,6 +8,7 @@ import LogistrationRouter from "./LogistrationRouter";
 export const AppRouter = () => {
   const { user } = useContext(UserContext);
   const [loggedUser, setLoggedUser] = user;
+  console.log(user)
   return (
     <>
       {loggedUser?.role == SELLER ? (
@@ -20,7 +21,3 @@ export const AppRouter = () => {
     </>
   );
 };
-
-/*
-
-*/

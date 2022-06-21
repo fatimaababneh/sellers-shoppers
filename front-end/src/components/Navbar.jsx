@@ -55,8 +55,13 @@ const Navbar = ({seller=false}) => {
       case "Create Store":navigate("/create-store"); break;
       case "Add Product": navigate("/add-product"); break;
       case "Profile": navigate("/profile"); break;
-    }
-  };
+      case "Logout": {localStorage.removeItem('loggedUser');
+                      setLoggedUser(null);
+                      navigate("/");
+                      } break;
+
+                  }
+                                  };
 
   return (
     <AppBar position="static">

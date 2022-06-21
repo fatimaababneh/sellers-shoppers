@@ -1,11 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import React from "react";
+import { UserContext } from "../../App";
 import { Button, Divider, Grid, Typography } from "@mui/material";
 import { Loading } from "../../components/loading";
 import { AddToCart } from "../../components/addToCart";
-import { getProduct } from "../../api/shopperAPI"
+import { getProduct } from "../../api/shopperAPI";
 
 export const ProductPage = (props) => {
+  const { user } = React.useContext(UserContext);
+  const [loggedUser, setLoggedUser] = user;
   const { store_id, id } = useParams();
   const [products, setProducts] = React.useState();
 
@@ -38,7 +41,8 @@ export const ProductPage = (props) => {
             <h3>{products.product_name}</h3>
           </Grid>
           <Grid className="Btn" item xs={2}>
-            <AddToCart prod={products} />
+            {loggedUser.id != products.owner_id &&
+            <AddToCart prod={products} />}
           </Grid>
           <Grid className="left-prods" item xs={11} md={6}>
             <Grid

@@ -66,26 +66,22 @@ app.post("/insertuser", (req, res) => {
         const sqlInsert = "INSERT INTO users (name,email,password,role) VALUES (?,?,?,?)";
         db.query(sqlInsert, [name, email, password, role], (err, result) => {
                 if(result){
-          const sqlSelect = "SELECT name,email,role FROM users WHERE email=? AND password=?";
+          const sqlSelect = "SELECT id,name,email,role FROM users WHERE email=? AND password=?";
                       if(result){
-                        db.query(sqlSelect, [email,password], 
-                          (err, result) => {
-                            if (err) {
-                              res.send({ err: err });
-                            }
-                            if (result.length > 0) {
-                              res.send(result);
-                            } 
-                          })
+                                db.query(sqlSelect, [email,password], 
+                                  (err, result) => {
+                                    if (err) {
+                                      res.send({ err: err });
+                                    }
+                                    if (result.length > 0) {
+                                      res.send(result);
+                                    } 
+                                    })
+                              }
                           }
-      
-          else{
+      else{
             res.send({ message: "not added" });
         }
-      
-      
-      
-      }
       });
       }
     }
@@ -100,7 +96,6 @@ app.post("/addorder", (req, res) => {
   const role = req.body.role;
   const mobile = req.body.mobile;
   const items = req.body.items;
-  console.log(req)
 
   const sqlSelect = "SELECT id FROM users WHERE email=?";
   if(role>0){
@@ -114,29 +109,26 @@ app.post("/addorder", (req, res) => {
           res.send(result)
 
           //////get order_id from orders \\\\\\\\\
-          const sqlSelect = "SELECT id FROM orders WHERE user_id=? AND mobile=?";
-                if(result){
+          const sqlSelect = "SELECT id FROM orders ORDER BY id DESC LIMIT 1";
                   db.query(sqlSelect, [id,mobile], (err, result) => {
                   let [order_id] = result;
                   let {id} = order_id;
+
                     items.map((element)=>{
 
                       const sqlInsert = "INSERT INTO order_item (order_id,item_id,quantity) VALUES (?,?,?)";
                       db.query(sqlInsert,[id, element.item_id, element.quantity], (err, result) => {
-                          if(result)
-                          res.send(result)
-                          if(err)
-                          console.log(err)
-                          })
-
-                    })
-
-                    
-                  })
+                        if(result){
+                          res.write("Order Added Successfully!!!!!!!!!!!")
+                          res.send()
+                        } else{
+                          res.statusCode(400)
+                        }})
+                    }) 
+                  }
                 
-                }
 
-                      }
+      )}
 
               if(err)
               console.log(err)
@@ -164,7 +156,7 @@ app.get("/getstores",(req,res)=>{
 ///////get store and all items of that store\\\\\\
 app.get('/store/product/:id',(req,res)=>{
   const {id} = req.params;
-  const sqlSelect = "SELECT item.id ,item.name as product_name, item.price, item.url_imag as product_image, item.description as product_description, store.name as store_name, store.image as store_image, store.description as store_description FROM item LEFT JOIN store ON store.id=item.store_id WHERE item.store_id=? ";
+  const sqlSelect = "SELECT item.id ,item.name as product_name, item.price, item.url_imag as product_image, item.description as product_description, store.name as store_name, store.user_id as owner_id, store.image as store_image, store.description as store_description FROM item LEFT JOIN store ON store.id=item.store_id WHERE item.store_id=? ";
   db.query(sqlSelect ,[id],(result,err)=>{
     if(result){ 
       res.send(result);
@@ -172,7 +164,6 @@ app.get('/store/product/:id',(req,res)=>{
       res.send(err);
     }
   })
-
 });
 
 /////////////////get orders of 
@@ -188,7 +179,6 @@ app.get('/order/store/:id',(req,res)=>{
   })
 
 });
-
 
 
 /////////create store\\\\\\//////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -249,7 +239,7 @@ app.delete('/delete/product/:id',(req,res)=>{
 //////////////////
 app.get('/product/:id',(req,res)=>{
   const {id} = req.params;
-  const sqlSelect = "SELECT item.id ,item.name as product_name, item.price, item.url_imag as product_image, item.description as product_description, store.name as store_name, store.image as store_image, store.description as store_description FROM item LEFT JOIN store ON store.id=item.store_id WHERE item.id=? ";
+  const sqlSelect = "SELECT item.id ,item.name as product_name, item.price, item.url_imag as product_image, item.description as product_description, store.user_id as owner_id, store.name as store_name, store.image as store_image, store.description as store_description FROM item LEFT JOIN store ON store.id=item.store_id WHERE item.id=? ";
   db.query(sqlSelect ,[id],(result,err)=>{
     if(result){ 
       res.send(result);
@@ -318,3 +308,24 @@ const port = 5000;
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+
+
+
+const countLike = (names)=>{
+  if(names.length == 0)
+  return(`[] -->no one like this `)
+
+  else if(names.length == 1){
+    return(`[${names[0]}] --> ${names[0]} likes this`)
+  }
+  else if(names.length == 2){
+    return(`[${names[0]},${names[1]}] --> ${names[0]} and ${names[1]} like this`)
+  }
+  else if(names.length == 3){
+    return(`[${names[0]},${names[1]},${names[2]}] --> ${names[0]},${names[1]}and ${names[2]} like this`)
+  }
+  else if(names.length == 4){
+    return(`[${names[0]},${names[1]},${names[2]},${names[3]}] --> ${names[0]},${names[1]} and ${names.length-2} like this`)
+  }
+}

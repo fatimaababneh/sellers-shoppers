@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/styling/components/hero.css";
 
-export const Hero = ({ title, img = "url(../assets/images/neww.jpeg)" }) => {
+export const Hero = ({ title, img = "url(../assets/images/shoppingg.jpeg)" }) => {
   const styles = { backgroundImage: `url(${img})` };
   return (
     <div className="hero-image" style={styles}>

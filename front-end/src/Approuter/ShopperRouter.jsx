@@ -17,6 +17,7 @@ export const ShopperRouter = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/store/:id" element={<StorePage />} />
+          {/* <Route path="/logout" element={} /> */}
           <Route
             path="/store=:store_id/product=:id"
             element={<ProductPage />}

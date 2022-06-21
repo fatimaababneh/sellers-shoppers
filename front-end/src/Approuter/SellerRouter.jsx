@@ -22,9 +22,7 @@ const SellerRouter = () => {
       <Route path="/store/:id" element={<StorePage />} />
       <Route
         path="/store=:store_id/product=:id"
-        element={<ProductPage />
-      }
-          />
+        element={<ProductPage />}/>
 
       </Switch>
     </SellerLayout>

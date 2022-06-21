@@ -2,7 +2,7 @@ import React from "react";
 import { UserContext } from "../App";
 import { register } from "../api/userAPI";
 import { Navigate, useNavigate } from "react-router-dom";
-
+import '../assets/styling/components/register.css'
 export const Register = () => {
   const { user } = React.useContext(UserContext);
   const [loggedUser, setLoggedUser] = user;
@@ -20,21 +20,22 @@ export const Register = () => {
     };
     navigate("/")
     register(userDetails, setLoggedUser);
-
   };
 
   return (
+    <div className="container-sinup">
     <form onSubmit={(e) => handleSubmit(e)}>
+      <h1>Sign Up</h1>
       <div className="input">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name:</label><br/>
         <input type="text" placeholder="Name" name="name" />
       </div>
       <div className="input">
-        <label htmlFor="name">email</label>
+        <label htmlFor="name">email</label><br/>
         <input type="email" placeholder="Email" name="email" />
       </div>
       <div className="input">
-        <label htmlFor="name">Password</label>
+        <label htmlFor="name">Password</label><br/>
         <input type="password" placeholder="password" name="password" />
       </div>
       <div className="input">
@@ -44,9 +45,9 @@ export const Register = () => {
           <option value="2">Shopper</option>
         </select>
         <div className="btns">
-          <button type="submit">Register</button>
+          <button type="submit" id="">Register</button>
         </div>
       </div>
-    </form>
+    </form></div>
   );
 };

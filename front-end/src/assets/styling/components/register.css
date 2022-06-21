@@ -1,0 +1,9 @@
+.container-sinup{
+    border: 2px solid grey;
+    margin: 4em auto;
+    width: 30%;
+    justify-content: center;
+    padding: 2em ;
+    border-radius: 4px;
+}
+

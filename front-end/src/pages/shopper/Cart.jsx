@@ -9,22 +9,20 @@ import { insertOrder } from "../../api/shopperAPI";
 export const Cart = () => {
   const { user } = React.useContext(UserContext);
   const [loggedUser, setLoggedUser] = user;
-  const navigate=useNavigate()
+  const navigate=useNavigate();
 
   const [items, setItems] = React.useState();
-  const [total, setTotal] = React.useState(0)
 
   const handleSubmit =()=>{
     let check = 0
     items.forEach((el)=>{
       check += el.price
     })
-    setTotal(check)
     if(loggedUser){
       const order = {
         email:loggedUser.email,
         role:loggedUser.role,
-        total: total,
+        total: check,
         mobile:"084973847",
         items:items.map((el)=>{return(
           {
